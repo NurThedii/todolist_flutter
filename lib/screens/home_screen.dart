@@ -85,8 +85,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text("Deskripsi: ${todo.description}"),
-                    Text("Label: ${todo.labelId}"),
-                    Text("Category: ${todo.categoryId}"),
+                    Text("Label: ${todo.label.title}"),
+                    Text("Category: ${todo.category.title}"),
                     Text("Status: ${todo.status}"),
                     Text("Deadline: ${todo.deadline}"),
                   ],

@@ -4,13 +4,13 @@ class Label {
 
   Label({required this.id, required this.title});
 
-  factory Label.fromJson(Map<String, dynamic> json) {
+  factory Label.fromJson(Map<String, dynamic>? json) {
+    if (json == null) {
+      return Label(id: 0, title: "Tanpa Label");
+    }
     return Label(
-      id:
-          json["id"] is int
-              ? json["id"]
-              : int.tryParse(json["id"].toString()) ?? 0,
-      title: json["title"] ?? "Tidak ada nama label",
+      id: json["id"] as int,
+      title: json["title"] ?? "Tanpa Label", 
     );
   }
 }
