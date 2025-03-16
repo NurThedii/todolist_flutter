@@ -6,8 +6,12 @@ class Category {
 
   factory Category.fromJson(Map<String, dynamic> json) {
     return Category(
-      id: json['id'],
-      title: json['title'] ?? "", // Handle jika null
+      id:
+          json["id"] is int
+              ? json["id"]
+              : int.tryParse(json["id"].toString()) ?? 0,
+      title: json["title"] ?? "Tidak ada nama kategori",
     );
   }
+
 }

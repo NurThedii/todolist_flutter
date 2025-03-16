@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:todolist_flutter/models/category.dart';
+import 'package:todolist_flutter/models/label.dart';
 import '../../models/todo.dart';
 import '../../services/api_service.dart';
 
+
 class TodoProvider with ChangeNotifier {
   List<Todo> _todos = [];
+  // Simpan daftar kategori dan label secara global
+  List<Category> categories = [];
+  List<Label> labels = [];
   final ApiService _apiService = ApiService();
 
   List<Todo> get todos => _todos;
@@ -66,4 +72,5 @@ class TodoProvider with ChangeNotifier {
       print("Error deleting todo: $e");
     }
   }
+  
 }

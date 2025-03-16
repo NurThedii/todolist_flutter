@@ -11,7 +11,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int _currentIndex = 0; // Indeks tab yang aktif
-
+  String searchQuery = "";
   @override
   void initState() {
     super.initState();
@@ -28,7 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
       length: 3,
       child: Scaffold(
         appBar: AppBar(
-          title: Text("Task Manager"),
+          title: Text("Todo List Maker"),
           bottom: TabBar(
             onTap: (index) {
               setState(() {
@@ -74,9 +74,31 @@ class _HomeScreenState extends State<HomeScreen> {
           itemCount: todoProvider.todos.length,
           itemBuilder: (context, index) {
             final todo = todoProvider.todos[index];
-            return _buildListItem(
-              todo.title,
-              () => _showDeleteDialog(() => todoProvider.deleteTodo(todo.id)),
+            return Card(
+              margin: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+              child: ListTile(
+                title: Text(
+                  todo.title,
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+                subtitle: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text("Deskripsi: ${todo.description}"),
+                    Text("Label: ${todo.labelId}"),
+                    Text("Category: ${todo.categoryId}"),
+                    Text("Status: ${todo.status}"),
+                    Text("Deadline: ${todo.deadline}"),
+                  ],
+                ),
+                trailing: IconButton(
+                  icon: Icon(Icons.delete, color: Colors.red),
+                  onPressed:
+                      () => _showDeleteDialog(
+                        () => todoProvider.deleteTodo(todo.id),
+                      ),
+                ),
+              ),
             );
           },
         );

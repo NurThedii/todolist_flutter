@@ -6,8 +6,11 @@ class Label {
 
   factory Label.fromJson(Map<String, dynamic> json) {
     return Label(
-      id: json['id'],
-      title: json['title'] ?? "", // Handle jika null
+      id:
+          json["id"] is int
+              ? json["id"]
+              : int.tryParse(json["id"].toString()) ?? 0,
+      title: json["title"] ?? "Tidak ada nama label",
     );
   }
 }
